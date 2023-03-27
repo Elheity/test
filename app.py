@@ -13,7 +13,7 @@ import hashlib
 def hash_func(text):
     return int(hashlib.sha256(text.encode('utf-8')).hexdigest(), 16) % 10**8
 
-train_data = pd.read_csv("/data/train_data.csv")
+train_data = pd.read_csv("train_data.csv")
 training = train_data
 training["protein_sequence"] = training["protein_sequence"].apply(hash_func)
 training["data_source"] = training["data_source"].apply(hash_func)
