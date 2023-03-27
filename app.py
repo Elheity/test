@@ -30,6 +30,7 @@ gb_model.fit(X_train, y_train)
 
 st.title("Protein Stability Predictor")
 st.image("data//1.jpeg",width = 800)
+st.set_option('deprecation.showPyplotGlobalUse', False)
 nav = st.sidebar.radio("Navigation",["Home","Prediction","Contribute"])
 if nav == "Home":
     
