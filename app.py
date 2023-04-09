@@ -67,7 +67,7 @@ if nav == "Prediction":
     pred =gb_model.predict(test_data)
 
     if st.button("Predict"):
-        st.success(f"Your predicted tm is {pred}")
+        st.success(f"The percentage of stability is  {pred}")
 
 if nav == "Contribute":
     st.header("Contribute to our dataset")
