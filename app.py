@@ -35,7 +35,7 @@ def calculate_instability_index(row):
 def calculate_hydrophobicity(row):
   sequence = str(row[1])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.gravy(scale='KyteDoolitle')
+  return "%0.2f" % X.gravy()
 
 #Isoelectric Point
 def calculate_isoelectric_point(row):
