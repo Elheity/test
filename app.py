@@ -171,7 +171,7 @@ if nav == "Home":
         fig= px.histogram(training, x='tm', title="tm Distribution", template='plotly_dark',width=800,height=400)
         st.plotly_chart(fig)
     if graph == "Amino acid count":
-        fig = px.bar(amino_count, x=amino_count.index, y='protein_sequence', color=amino_count.index)
+        fig = px.bar(amino_count, x=amino_count.index, y='count', color=amino_count.index)
         fig.update_layout(
             title='Amino Acid Count',
             height=600,
