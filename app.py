@@ -255,12 +255,14 @@ if nav == "Prediction":
             #val = np.array(val).reshape(1,-1)
       if st.checkbox("Show Table"):
           st.table(test_data.head(20))
-  
+      if test_data.isna():
+        st.text("Please, Enter the data")
       #val = np.array(val).reshape(1,-1)
-      pred =gb_model.predict(test_data)
+      else:
+        pred =gb_model.predict(test_data)
   
-      if st.button("Predict"):
-          st.success(f"The percentage of stability is  {pred}")
+        if st.button("Predict"):
+            st.success(f"The percentage of stability is  {pred}")
 
 if nav == "About":
     st.title("About our model")
