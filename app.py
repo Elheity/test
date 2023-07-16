@@ -8,7 +8,7 @@ from sklearn.model_selection import cross_val_score, train_test_split
 import numpy as np 
 import hashlib
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
-
+import re
 
 
 # PhysioChemical Properties of Amino acids
