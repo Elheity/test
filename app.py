@@ -48,7 +48,44 @@ def calculate_charge(row):
   sequence = str(row[1])
   X = ProteinAnalysis(sequence)
   return "%0.2f" % X.charge_at_pH(row[2])
-# Define the hashing function
+
+#####################
+# Define the feature Engineering for test data function
+################
+def calculate_aromaticity_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.aromaticity()
+
+#Molecular Weight
+def calculate_molecular_weight_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.molecular_weight()
+
+#Instability Index
+def calculate_instability_index_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.instability_index()
+
+#Hydrophobicity
+def calculate_hydrophobicity_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.gravy()
+
+#Isoelectric Point
+def calculate_isoelectric_point_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.isoelectric_point()
+
+#Charge
+def calculate_charge_test(row):
+  sequence = str(row[0])
+  X = ProteinAnalysis(sequence)
+  return "%0.2f" % X.charge_at_pH(row[1])
 # Define the hashing function
 def hash_func(text):
     return int(hashlib.sha256(text.encode('utf-8')).hexdigest(), 16) % 10**8
@@ -157,12 +194,12 @@ if nav == "Prediction":
           #print("shape", test_data.shape)
           #test_data["protein_sequence"] = test_data["protein_sequence"].apply(hash_func)
           #test_data["data_source"] = test_data["data_source"].apply(hash_func)
-    test_data['Aromaticity'] = test_data.apply(calculate_aromaticity, axis=1)
-    test_data['Molecular Weight'] = test_data.apply(calculate_molecular_weight, axis=1)
-    test_data['Instability Index'] = test_data.apply(calculate_instability_index, axis=1)
-    test_data['Hydrophobicity'] = test_data.apply(calculate_hydrophobicity, axis=1)
-    test_data['Isoelectric Point'] = test_data.apply(calculate_isoelectric_point, axis=1)
-    test_data['Charge'] = test_data.apply(calculate_charge, axis=1)
+    test_data['Aromaticity'] = test_data.apply(calculate_aromaticity_test, axis=1)
+    test_data['Molecular Weight'] = test_data.apply(calculate_molecular_weight_test, axis=1)
+    test_data['Instability Index'] = test_data.apply(calculate_instability_index_test, axis=1)
+    test_data['Hydrophobicity'] = test_data.apply(calculate_hydrophobicity_test, axis=1)
+    test_data['Isoelectric Point'] = test_data.apply(calculate_isoelectric_point_test, axis=1)
+    test_data['Charge'] = test_data.apply(calculate_charge_test, axis=1)
 
     test_data.drop(columns=["protein_length"], inplace=True)
     test_data.drop(columns=["protein_sequence"], inplace=True)
