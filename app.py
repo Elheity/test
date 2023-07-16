@@ -199,44 +199,44 @@ if nav == "Prediction":
     test_data["protein_length"] = test_data["protein_sequence"].apply(lambda x: len(x))
 
           
-
-    test_data = return_amino_acid_df(test_data)
-          #print("shape", test_data.shape)
-          #test_data["protein_sequence"] = test_data["protein_sequence"].apply(hash_func)
-          #test_data["data_source"] = test_data["data_source"].apply(hash_func)
-    test_data['Aromaticity'] = test_data.apply(calculate_aromaticity_test, axis=1)
-    test_data['Molecular Weight'] = test_data.apply(calculate_molecular_weight_test, axis=1)
-    test_data['Instability Index'] = test_data.apply(calculate_instability_index_test, axis=1)
-    test_data['Hydrophobicity'] = test_data.apply(calculate_hydrophobicity_test, axis=1)
-    test_data['Isoelectric Point'] = test_data.apply(calculate_isoelectric_point_test, axis=1)
-    test_data['Charge'] = test_data.apply(calculate_charge_test, axis=1)
-
-    test_data.drop(columns=["protein_length"], inplace=True)
-    test_data.drop(columns=["protein_sequence"], inplace=True)
-
-          # Reset the DataFrame indexes
-    test_data.reset_index(drop=True, inplace=True)
-
-
-    test_data['Aromaticity'] = pd.to_numeric(test_data['Aromaticity'])
-    test_data['Molecular Weight'] = pd.to_numeric(test_data['Molecular Weight'])
-    test_data['Instability Index'] = pd.to_numeric(test_data['Instability Index'])
-    test_data['Hydrophobicity'] = pd.to_numeric(test_data['Hydrophobicity'])
-    test_data['Isoelectric Point'] = pd.to_numeric(test_data['Isoelectric Point'])
-    test_data['Charge'] = pd.to_numeric(test_data['Charge'])
-
-          #Bestfeatures= 
-          #test_data["protein_sequence"] = test_data["protein_sequence"].apply(hash_func)
-          #test_data["data_source"] = test_data["data_source"].apply(hash_func)
-          #val = np.array(val).reshape(1,-1)
-    if st.checkbox("Show Table"):
-        st.table(test_data.head(20))
-
-    #val = np.array(val).reshape(1,-1)
-    pred =gb_model.predict(test_data)
-
-    if st.button("Predict"):
-        st.success(f"The percentage of stability is  {pred}")
+    if not test_data.empty:
+      test_data = return_amino_acid_df(test_data)
+            #print("shape", test_data.shape)
+            #test_data["protein_sequence"] = test_data["protein_sequence"].apply(hash_func)
+            #test_data["data_source"] = test_data["data_source"].apply(hash_func)
+      test_data['Aromaticity'] = test_data.apply(calculate_aromaticity_test, axis=1)
+      test_data['Molecular Weight'] = test_data.apply(calculate_molecular_weight_test, axis=1)
+      test_data['Instability Index'] = test_data.apply(calculate_instability_index_test, axis=1)
+      test_data['Hydrophobicity'] = test_data.apply(calculate_hydrophobicity_test, axis=1)
+      test_data['Isoelectric Point'] = test_data.apply(calculate_isoelectric_point_test, axis=1)
+      test_data['Charge'] = test_data.apply(calculate_charge_test, axis=1)
+  
+      test_data.drop(columns=["protein_length"], inplace=True)
+      test_data.drop(columns=["protein_sequence"], inplace=True)
+  
+            # Reset the DataFrame indexes
+      test_data.reset_index(drop=True, inplace=True)
+  
+  
+      test_data['Aromaticity'] = pd.to_numeric(test_data['Aromaticity'])
+      test_data['Molecular Weight'] = pd.to_numeric(test_data['Molecular Weight'])
+      test_data['Instability Index'] = pd.to_numeric(test_data['Instability Index'])
+      test_data['Hydrophobicity'] = pd.to_numeric(test_data['Hydrophobicity'])
+      test_data['Isoelectric Point'] = pd.to_numeric(test_data['Isoelectric Point'])
+      test_data['Charge'] = pd.to_numeric(test_data['Charge'])
+  
+            #Bestfeatures= 
+            #test_data["protein_sequence"] = test_data["protein_sequence"].apply(hash_func)
+            #test_data["data_source"] = test_data["data_source"].apply(hash_func)
+            #val = np.array(val).reshape(1,-1)
+      if st.checkbox("Show Table"):
+          st.table(test_data.head(20))
+  
+      #val = np.array(val).reshape(1,-1)
+      pred =gb_model.predict(test_data)
+  
+      if st.button("Predict"):
+          st.success(f"The percentage of stability is  {pred}")
 
 if nav == "About":
     st.title("About our model")
