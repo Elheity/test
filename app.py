@@ -255,7 +255,7 @@ if nav == "Prediction":
             #val = np.array(val).reshape(1,-1)
       if st.checkbox("Show Table"):
           st.table(test_data.head(20))
-      if test_data.isna():
+      if test_data.isna().any().any():
         st.text("Please, Enter the data")
       #val = np.array(val).reshape(1,-1)
       else:
