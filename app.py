@@ -9,7 +9,7 @@ import numpy as np
 import hashlib
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
 import re
-
+import plotly.express as px
 
 # PhysioChemical Properties of Amino acids
 
@@ -150,24 +150,34 @@ gb_model.fit(X_train, y_train)
 st.title("Protein Stability Predictor")
 st.image("data//1.jpeg",width = 800)
 st.set_option('deprecation.showPyplotGlobalUse', False)
-nav = st.sidebar.radio("Navigation",["Home","Prediction","Contribute"])
+nav = st.sidebar.radio("Navigation",["Home","Prediction","About"])
 if nav == "Home":
     
     if st.checkbox("Show Table"):
         st.table(training.head(20))
     
-    graph = st.selectbox("What kind of Graph ? ",["PH"])
+    graph = st.selectbox("What kind of Graph ? ",["Amino acid count", "tm"])
 
-    val = st.slider("Filter data using years",7)
-    data = train_data.loc[train_data["pH"]<= val]
-    if graph == "PH":
-        plt.figure(figsize = (10,5))
-        plt.scatter(train_data["tm"],train_data["pH"])
-        plt.ylim(0)
-        plt.xlabel("pH")
-        plt.ylabel("tm")
-        plt.tight_layout()
-        st.pyplot()
+    #val = st.slider("Filter data using years",7)
+    #data = train_data.loc[train_data["pH"]<= val]
+    if graph == "tm":
+        #plt.figure(figsize = (10,5))
+        #plt.scatter(train_data["tm"],train_data["pH"])
+        #plt.ylim(0)
+        #plt.xlabel("pH")
+        #plt.ylabel("tm")
+        #plt.tight_layout()
+        #st.pyplot()
+        fig= px.histogram(training, x='tm', title="tm Distribution", template='plotly_dark',width=800,height=400)
+        st.plotly_chart(fig)
+    if graph == "Amino acid count":
+        fig = px.bar(amino_count, x=amino_count.index, y='protein_sequence', color=amino_count.index)
+        fig.update_layout(
+            title='Amino Acid Count',
+            height=600,
+            template='ggplot2'
+        )
+        st.plotly_chart(fig)
     
     
 if nav == "Prediction":
@@ -228,12 +238,7 @@ if nav == "Prediction":
     if st.button("Predict"):
         st.success(f"The percentage of stability is  {pred}")
 
-if nav == "Contribute":
-    st.header("Contribute to our dataset")
-    ex = st.number_input("Enter your Experience",0.0,20.0)
-    sal = st.number_input("Enter your Salary",0.00,1000000.00,step = 1000.0)
-    if st.button("submit"):
-        to_add = {"YearsExperience":[ex],"Salary":[sal]}
-        to_add = pd.DataFrame(to_add)
-        to_add.to_csv("data//Salary_Data.csv",mode='a',header = False,index= False)
-        st.success("Submitted")
+if nav == "About":
+    st.title("About our model")
+    st.text("The process of understanding the effect of pH on proteins ")
+    st.text("and its potential contribution to mutations")
