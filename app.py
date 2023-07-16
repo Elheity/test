@@ -55,6 +55,7 @@ def calculate_charge(row):
 def calculate_aromaticity_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.aromaticity()
   else:
@@ -64,6 +65,7 @@ def calculate_aromaticity_test(row):
 def calculate_molecular_weight_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.molecular_weight()
   else:
@@ -73,6 +75,7 @@ def calculate_molecular_weight_test(row):
 def calculate_instability_index_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.instability_index()
   else:
@@ -82,6 +85,7 @@ def calculate_instability_index_test(row):
 def calculate_hydrophobicity_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.gravy()
   else:
@@ -91,6 +95,7 @@ def calculate_hydrophobicity_test(row):
 def calculate_isoelectric_point_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.isoelectric_point()
   else:
@@ -100,6 +105,7 @@ def calculate_isoelectric_point_test(row):
 def calculate_charge_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
+  length = X.length
   if length > 0:
     return "%0.2f" % X.charge_at_pH(row[1])
   else:
