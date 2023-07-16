@@ -54,6 +54,7 @@ def hash_func(text):
     return int(hashlib.sha256(text.encode('utf-8')).hexdigest(), 16) % 10**8
 
 
+train_data = pd.read_csv("/kaggle/input/novozymes-enzyme-stability-prediction/train.csv")
 training = train_data
 training=training.dropna(how='all')
 training['pH'] = training['pH'].fillna(training['pH'].mean())
