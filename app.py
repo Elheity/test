@@ -55,37 +55,55 @@ def calculate_charge(row):
 def calculate_aromaticity_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.aromaticity()
+  if length > 0:
+    return "%0.2f" % X.aromaticity()
+  else:
+    return "%0.2f" % 0.0
 
 #Molecular Weight
 def calculate_molecular_weight_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.molecular_weight()
+  if length > 0:
+    return "%0.2f" % X.molecular_weight()
+  else:
+    return "%0.2f" % 0.0
 
 #Instability Index
 def calculate_instability_index_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.instability_index()
+  if length > 0:
+    return "%0.2f" % X.instability_index()
+  else:
+    return "%0.2f" % 0.0
 
 #Hydrophobicity
 def calculate_hydrophobicity_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.gravy()
+  if length > 0:
+    return "%0.2f" % X.gravy()
+  else:
+    return "%0.2f" % 0.0
 
 #Isoelectric Point
 def calculate_isoelectric_point_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.isoelectric_point()
+  if length > 0:
+    return "%0.2f" % X.isoelectric_point()
+  else:
+    return "%0.2f" % 0.0
 
 #Charge
 def calculate_charge_test(row):
   sequence = str(row[0])
   X = ProteinAnalysis(sequence)
-  return "%0.2f" % X.charge_at_pH(row[1])
+  if length > 0:
+    return "%0.2f" % X.charge_at_pH(row[1])
+  else:
+    return "%0.2f" % 0.0
 # Define the hashing function
 def hash_func(text):
     return int(hashlib.sha256(text.encode('utf-8')).hexdigest(), 16) % 10**8
